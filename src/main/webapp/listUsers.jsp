@@ -11,25 +11,42 @@
 <html>
 <head>
     <title>Add Friends</title>
-    <link type="text/css" rel="stylesheet" href="./css/style.css" />
+    <style>
+        <%@include file="/css/addFriends.css"%>
+    </style>
+
 </head>
 
 <body>
-    <h1>Add your friends</h1>
-    <%
-        UserDAO userDAO = new UserDAO();
-        List<User> userList = userDAO.getAllUsers();
-        for (User user : userList) {
-            String temp = user.getFirstName() + " " + user.getLastName();
-    %>
+<div class="header">
+    <h1>Add your friends</h1
+</div>
+<%
+    UserDAO userDAO = new UserDAO();
+    String usern = (String) session.getAttribute("username");
+    List<User> userList = userDAO.getAllUsers(usern);
+    for (User user : userList) {
+        if (user.getUsername().equals(usern))
+            continue;
+        String temp = user.getFirstName() + " " + user.getLastName();
+%>
+<div class="body">
     <form action="${pageContext.request.contextPath}/addfriend" method="post">
-        <li><%=temp%></li>
+        <h1><%=temp%>
+        </h1>
         <input name="userid" type="hidden" value="<%=user.getId()%>">
-        <button type="submit">Add</button>
+        <button class="button2" type="submit">Add friend</button>
     </form>
     <%
         }
+    String message =(String)session.getAttribute("no-friends");
+    if(message==null||message.isEmpty()){
+        message="";
+    }
     %>
+    <button class="button2"><a href="main.jsp">Go to messenger</a></button>
+    <%=message%>
+</div>
 
 </body>
 </html>

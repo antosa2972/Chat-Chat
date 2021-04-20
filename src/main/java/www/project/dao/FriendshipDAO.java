@@ -16,13 +16,10 @@ public class FriendshipDAO {
 	public List<Friendship> getFriendship(int user) {
 
 
-		// Configure Hibernate
 		Configuration configuration = new Configuration().configure();
 
-		// Create SessionFactory
 		SessionFactory sessionFactory = configuration.buildSessionFactory();
 
-		// Get Session object
 		Session session = sessionFactory.openSession();
 
 

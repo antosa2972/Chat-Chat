@@ -1,10 +1,8 @@
 package www.project.dao;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.NativeQuery;
 import www.project.bean.Friendship;
 import www.project.bean.User;
@@ -160,12 +158,13 @@ public class UserDAO {
 		return existingUser;
 	}
 
-	public List<User> getAllUsers() {
+	public List<User> getAllUsers(String username) {
 		Configuration configuration = new Configuration().configure();
 		SessionFactory sessionFactory = configuration.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 
-		String hql = "SELECT * FROM user";
+
+		String hql = "select * from user";
 		NativeQuery<User> query = session.createNativeQuery(hql, User.class);
 
 		return query.getResultList();

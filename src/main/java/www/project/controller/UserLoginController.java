@@ -1,6 +1,6 @@
 package www.project.controller;
 
-import org.hibernate.HibernateException;
+import org.hibernate.*;
 import www.project.bean.Friendship;
 import www.project.bean.User;
 import www.project.dao.FriendshipDAO;
@@ -15,6 +15,7 @@ public class UserLoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("username").toLowerCase();
 		String password = request.getParameter("password");
+
 
 		HttpSession httpSession = request.getSession(true);
 

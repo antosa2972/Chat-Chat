@@ -21,9 +21,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Description" content=""/>
 
-    <link type="text/css" rel="stylesheet" href="./css/main.css" />
-<%--    <link type="text/css" rel="stylesheet" href="./css/normalize.css" />--%>
-
     <title>Chat&Chat</title>
 </head>
 <body>
@@ -34,11 +31,22 @@
     User user = userDAO.getUser((String) session.getAttribute("username"));
     String userFullName = user.getFirstName() + " " + user.getLastName();
     User friend = null;
-    List<Friendship> list = friendshipDAO.getFriendship(user.getId());
-    friend = userDAO.getUser((String) session.getAttribute("friend-uname"));
-    User currentFriend = userDAO.getUser((String) session.getAttribute("friend-uname"));
-    String friendName = friend.getFirstName() + " " + friend.getLastName();
-    String friendEmail = friend.getEmail();
+    String friendPar = null;
+    String friendName = null;
+    String friendEmail = null;
+    List<Friendship> list = null;
+    User currentFriend = null;
+    friendPar = (String) session.getAttribute("friend-uname");
+    if (friendPar.isEmpty()) {
+        list = friendshipDAO.getFriendship(user.getId());
+        friend = userDAO.getUser((String) session.getAttribute("friend-uname"));
+        currentFriend = userDAO.getUser((String) session.getAttribute("friend-uname"));
+        friendName = friend.getFirstName() + " " + friend.getLastName();
+        friendEmail = friend.getEmail();
+    } else {
+        session.setAttribute("no-friends", "Add friends to continue!!!");
+        response.sendRedirect("listUsers.jsp");
+    }
 %>
 
 <div class="wrapper">
@@ -47,7 +55,8 @@
             <div class="left"><h2>Chat&Chat</h2></div>
 
             <div class="middle">
-                <h3><%=friendName%></h3>
+                <h3><%=friendName%>
+                </h3>
                 <p>Chat&Chat</p>
             </div>
 
@@ -64,16 +73,21 @@
             <div class="col-content">
                 <div class="messages" id="msg">
                     <%
-                        for (Friendship friendship: list) {
-                        	friend = userDAO.getUser(friendship.getUser1());
-                        	String temp = friend.getFirstName() + " " + friend.getLastName();
-                        	String friendUname = friend.getUsername();
+                        String temp = "";
+                        String friendUname = "";
+                        if (list != null) {
+                            for (Friendship friendship : list) {
+                                friend = userDAO.getUser(friendship.getUser1());
+                                temp = friend.getFirstName() + " " + friend.getLastName();
+                                friendUname = friend.getUsername();
+                            }
                     %>
 
                     <li>
                         <form action="${pageContext.request.contextPath}/fetch" method="post">
                             <input type="hidden" name="friend-uname" value="<%=friendUname%>">
-                            <button type="submit"><h3><%=temp%></h3></button>
+                            <button type="submit"><h3><%=temp%>
+                            </h3></button>
                         </form>
                     </li>
                     <%
@@ -89,27 +103,30 @@
                     <div class="grid-message" id="message">
                         <%
                             MessagesDAO messagesDAO = new MessagesDAO();
-
-                            List<Messages> messagesList = messagesDAO.getAllMessages(user.getId(), currentFriend.getId());
-                            for (Messages message: messagesList) {
-                            	String newMessage = message.getMsg();
-                            	if (message.getSender() == user.getId()) {
+                            if (currentFriend != null) {
+                                List<Messages> messagesList = messagesDAO.getAllMessages(user.getId(), currentFriend.getId());
+                                for (Messages message : messagesList) {
+                                    String newMessage = message.getMsg();
+                                    if (message.getSender() == user.getId()) {
                         %>
                         <div class="col-message-sent">
                             <div class="message-sent">
-                                <p><%=newMessage%></p>
+                                <p><%=newMessage%>
+                                </p>
                             </div>
                         </div>
                         <%
-                            } else {
+                        } else {
                         %>
                         <div class="col-message-received">
                             <div class="message-received">
-                                <p><%=newMessage%></p>
+                                <p><%=newMessage%>
+                                </p>
                             </div>
                         </div>
                         <%
-                            }
+                                    }
+                                }
                             }
                         %>
                     </div>
@@ -134,8 +151,10 @@
 
                 <div class="user-panel">
 
-                    <h3><%=friendName%></h3>
-                    <p><%=friendEmail%></p>
+                    <h3><%=friendName%>
+                    </h3>
+                    <p><%=friendEmail%>
+                    </p>
                     <form action="${pageContext.request.contextPath}/logout" method="post">
                         <button type="submit">Log Out</button>
                         <button><a href="listUsers.jsp">Add Friends</a></button>
