@@ -37,7 +37,7 @@
     List<Friendship> list = null;
     User currentFriend = null;
     friendPar = (String) session.getAttribute("friend-uname");
-    if (friendPar.isEmpty()) {
+    if (!friendPar.isEmpty()) {
         list = friendshipDAO.getFriendship(user.getId());
         friend = userDAO.getUser((String) session.getAttribute("friend-uname"));
         currentFriend = userDAO.getUser((String) session.getAttribute("friend-uname"));

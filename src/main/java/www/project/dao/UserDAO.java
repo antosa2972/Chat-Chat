@@ -28,7 +28,7 @@ public class UserDAO {
 		NativeQuery<Friendship> query = session.createNativeQuery(hql, Friendship.class);
 		query.setParameter("userId", userId);
 
-		Friendship friendship = query.setMaxResults(1).uniqueResult();
+		Friendship friendship = query.uniqueResult();
 
 		if (friendship == null) {
 			System.out.println("\n\n User not Found \n");
@@ -58,7 +58,7 @@ public class UserDAO {
 		NativeQuery query = session.createNativeQuery(hql, User.class);
 		query.setParameter("userName", userName);
 
-		User existingUser = (User) query.setMaxResults(1).uniqueResult();
+		User existingUser = (User) query.uniqueResult();
 
 		if (existingUser == null) {
 			System.out.println("\n\n User not Found \n");
@@ -137,7 +137,7 @@ public class UserDAO {
 		NativeQuery<User> query = session.createNativeQuery(hql, User.class);
 		query.setParameter("username", userName);
 
-		User existingUser = query.setMaxResults(1).uniqueResult();
+		User existingUser = query.uniqueResult();
 		System.out.println(existingUser.getUsername());
 
 		return existingUser;
@@ -152,7 +152,7 @@ public class UserDAO {
 		NativeQuery<User> query = session.createNativeQuery(hql, User.class);
 		query.setParameter("id", id);
 
-		User existingUser = query.setMaxResults(1).uniqueResult();
+		User existingUser = query.uniqueResult();
 //		System.out.println(existingUser.getUsername());
 
 		return existingUser;
