@@ -20,11 +20,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Description" content=""/>
-
+    <script>
+        var ws = new WebSocket("ws://localhost:8080/TomcatWebSocket/wschat/WsChatServlet");
+        ws.onopen = function(){
+        };
+        ws.onmessage = function(message){
+            document.getElementById("chatlog").textContent += message.data + "\n";
+        };
+        function postToServer(){
+            ws.send(document.getElementById("msg").value);
+            document.getElementById("msg").value = "";
+        }
+        function closeConnect(){
+            ws.close();
+        }
+    </script>
     <style>
         <%@include file="/css/main.css"%>
     </style>
-
     <title>Chat&Chat</title>
 </head>
 <body>
@@ -136,11 +149,8 @@
 
                 <div class="compose">
                     <form action="${pageContext.request.contextPath}/sendmsg" method="post">
-                        <input name="input-box" placeholder="Type a message">
+                        <input class="textt" maxlength="150" name="input-box" placeholder="Type a message">
                     </form>
-                    <div class="compose-dock">
-                    </div>
-
                 </div>
 
             </div>

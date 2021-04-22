@@ -113,7 +113,7 @@ header .left {
 	margin-top: 90px;
 	margin-left: 25%;
 	width:50%;
-	height: 900px;
+	height: 80%;
 	position:absolute;
 	background: #212121;;
 	top:0;
@@ -124,7 +124,7 @@ header .left {
 }
 
 .col-content {
-	height: 700px;
+	height: 100%;
 	-webkit-box-flex: 1;
 	padding: 0px;
 	-ms-flex: 1;
@@ -133,12 +133,14 @@ header .left {
 }
 
 .compose input {
-	background-color: inherit;
-	color: #1db954;
-	width: 100%;
-	border: 0px;
-	font-size: 17px;
-	padding-right: 80px
+	border: #212121;
+	background-color: darkslategray;
+	color: white;
+	width: 89.3%;
+	height: 55px;
+	font-size: 12px;
+	padding-right: 80px;
+	white-space: normal;
 }
 
 .col-message-sent{
