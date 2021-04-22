@@ -155,7 +155,7 @@ header .left {
 
 .message-sent,
 .message-received {
-	width: 90%;
+	max-width: 90%;
 	margin-top: 0.3em;
 	margin-bottom: 0.3em;
 	padding: 0.5em 0.6em;
