@@ -1,11 +1,11 @@
 .button2{
-    width:180px;
+    width:150px;
     height:30px;
     left:750px;
     top:625px;
     background:green;
-    font-family:verdana;
-    font-size:18px;
+    font-family: verdana, serif;
+    font-size:12px;
     color:white;
     border-radius:20px;
     border-width: 1px;
@@ -35,4 +35,10 @@
     color:#1ED761;
     z-index:7;
     font-family:verdana;
+}
+.friend-field {
+margin-bottom: 15px;
+}
+.friend-field h1{
+    font-size: 20px;
 }

@@ -21,7 +21,6 @@ public class AddFriendServlet extends HttpServlet {
 
 		FriendshipDAO friendshipDAO = new FriendshipDAO();
 		friendshipDAO.createFriendship(id1, id2);
-		friendshipDAO.createFriendship(id2, id1);
 
 		User user = userDAO.getUser(id2);
 		httpSession.setAttribute("friend-uname", user.getUsername());

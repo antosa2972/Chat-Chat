@@ -23,7 +23,7 @@ public class FriendshipDAO {
 		Session session = sessionFactory.openSession();
 
 
-		String hql = "SELECT * FROM friendships WHERE user2=:user";
+		String hql = "SELECT * FROM friendships WHERE user1=:user";
 		NativeQuery<Friendship> query = session.createNativeQuery(hql, Friendship.class);
 		query.setParameter("user", user);
 

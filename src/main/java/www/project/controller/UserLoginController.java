@@ -28,7 +28,7 @@ public class UserLoginController extends HttpServlet {
 				if(userDAO.checkUserFriends(userDAO.getUser(userName).getId()) == true) {
 					User user = userDAO.getUser(userName);
 					httpSession.setAttribute("username", user.getUsername());
-					httpSession.setAttribute("friend-uname", "-1");
+					httpSession.setAttribute("friend-uname", "");
 					response.sendRedirect("./listUsers.jsp");
 				}
 				else {

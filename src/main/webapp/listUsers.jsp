@@ -36,10 +36,10 @@
             continue;
         }
         List<Friendship> friendships = friendshipDAO.getFriendship(cur_u_id);
-        String temp="";
-        if(friendships.size()!=0) {
+        String temp = "";
+        if (friendships.size() != 0) {
             for (Friendship friendship : friendships) {
-                if (friendship.getUser1() != user.getId()) {
+                if (friendship.getUser2() != user.getId()) {
                     temp = user.getFirstName() + " " + user.getLastName();
                 } else {
                     checker++;
@@ -49,20 +49,23 @@
                 checker = 0;
                 continue;
             }
-        }else temp = user.getFirstName() + " " + user.getLastName();
+        } else temp = user.getFirstName() + " " + user.getLastName();
 %>
 <div class="body">
     <form action="${pageContext.request.contextPath}/addfriend" method="post">
-        <h1><%=temp%></h1>
-        <input name="userid" type="hidden" value="<%=user.getId()%>">
-        <button class="button2" type="submit">Add friend</button>
+        <div class="friend-field">
+            <h1><%=temp%>
+            </h1>
+            <input name="userid" type="hidden" value="<%=user.getId()%>">
+            <button class="button2" type="submit">Add friend</button>
+        </div>
     </form>
     <%
         }
-    String message =(String)session.getAttribute("no-friends");
-    if(message==null||message.isEmpty()){
-        message="";
-    }
+        String message = (String) session.getAttribute("no-friends");
+        if (message == null || message.isEmpty()) {
+            message = "";
+        }
     %>
     <button class="button2"><a href="main.jsp">Go to messenger</a></button>
     <%=message%>

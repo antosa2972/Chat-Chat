@@ -59,12 +59,14 @@
             <div class="left"><h2>Chat&Chat</h2></div>
 
             <div class="middle">
-                <h3><%=friendName%></h3>
+                <h3><%=friendName%>
+                </h3>
             </div>
 
             <div class="right">
                 <div class="username">
-                    <h3><%=userFullName%></h3>
+                    <h3><%=userFullName%>
+                    </h3>
                 </div>
             </div>
         </div>
@@ -79,20 +81,16 @@
                         String friendUname = "";
                         if (list != null) {
                             for (Friendship friendship : list) {
-                                friend = userDAO.getUser(friendship.getUser1());
+                                friend = userDAO.getUser(friendship.getUser2());
                                 temp = friend.getFirstName() + " " + friend.getLastName();
                                 friendUname = friend.getUsername();
-                            }
                     %>
-
-                    <li>
                         <form action="${pageContext.request.contextPath}/fetch" method="post">
                             <input type="hidden" name="friend-uname" value="<%=friendUname%>">
-                            <button class="friend-button" type="submit"><h3><%=temp%>
-                            </h3></button>
+                            <button class="friend-button" type="submit"><%=temp%></button>
                         </form>
-                    </li>
                     <%
+                            }
                         }
                     %>
                 </div>
@@ -159,7 +157,7 @@
                     </p>
                     <form action="${pageContext.request.contextPath}/logout" method="post">
                         <button class="log-out" type="submit">Log Out</button>
-                        <button class="add-friends"><a href="listUsers.jsp">Add Friends</a>
+                        <button class="add-friends"><a href="listUsers.jsp">Add Friends</a></button>
                     </form>
                 </div>
 
