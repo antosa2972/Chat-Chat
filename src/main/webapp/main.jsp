@@ -113,7 +113,8 @@
                         %>
                         <div class="col-message-sent">
                             <div class="message-sent">
-                                <p><%=newMessage%></p>
+                                <p><%=newMessage%>
+                                </p>
                             </div>
                         </div>
                         <%
@@ -121,7 +122,8 @@
                         %>
                         <div class="col-message-received">
                             <div class="message-received">
-                                <p><%=newMessage%></p>
+                                <p><%=newMessage%>
+                                </p>
                             </div>
                         </div>
                         <%
@@ -157,7 +159,7 @@
                     </p>
                     <form action="${pageContext.request.contextPath}/logout" method="post">
                         <button class="log-out" type="submit">Log Out</button>
-                        <button class="add-friends"><a href="listUsers.jsp">Add Friends</a></button>
+                        <button class="add-friends"><a href="listUsers.jsp">Add Friends</a>
                     </form>
                 </div>
 

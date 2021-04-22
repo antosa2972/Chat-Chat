@@ -7,7 +7,9 @@ import org.hibernate.query.NativeQuery;
 import www.project.bean.Friendship;
 import www.project.bean.User;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
@@ -166,6 +168,18 @@ public class UserDAO {
 
 		String hql = "select * from user";
 		NativeQuery<User> query = session.createNativeQuery(hql, User.class);
+
+		return query.getResultList();
+	}
+	public List<Integer> getFriends(int id){
+		Configuration configuration = new Configuration().configure();
+		SessionFactory sessionFactory = configuration.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+
+
+		String hql = "select user2 from friendships where user1=:id";
+		NativeQuery<Integer> query = session.createNativeQuery(hql,Integer.class);
+		query.setParameter("id", id);
 
 		return query.getResultList();
 	}

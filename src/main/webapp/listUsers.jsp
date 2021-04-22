@@ -1,6 +1,8 @@
 <%@ page import="www.project.bean.User" %>
 <%@ page import="java.util.List" %>
-<%@ page import="www.project.dao.UserDAO" %><%--
+<%@ page import="www.project.dao.UserDAO" %>
+<%@ page import="www.project.bean.Friendship" %>
+<%@ page import="www.project.dao.FriendshipDAO" %><%--
   Created by IntelliJ IDEA.
   User: gio
   Date: 08/01/2020
@@ -19,21 +21,39 @@
 
 <body>
 <div class="header">
-    <h1>Add your friends</h1
+    <h1>Add your friends</h1>
 </div>
 <%
+    int checker = 0;
+    int cur_u_id = 0;
+    FriendshipDAO friendshipDAO = new FriendshipDAO();
     UserDAO userDAO = new UserDAO();
     String usern = (String) session.getAttribute("username");
     List<User> userList = userDAO.getAllUsers(usern);
     for (User user : userList) {
-        if (user.getUsername().equals(usern))
+        if (user.getUsername().equals(usern)) {
+            cur_u_id = user.getId();
             continue;
-        String temp = user.getFirstName() + " " + user.getLastName();
+        }
+        List<Friendship> friendships = friendshipDAO.getFriendship(cur_u_id);
+        String temp="";
+        if(friendships.size()!=0) {
+            for (Friendship friendship : friendships) {
+                if (friendship.getUser1() != user.getId()) {
+                    temp = user.getFirstName() + " " + user.getLastName();
+                } else {
+                    checker++;
+                }
+            }
+            if (checker > 0) {
+                checker = 0;
+                continue;
+            }
+        }else temp = user.getFirstName() + " " + user.getLastName();
 %>
 <div class="body">
     <form action="${pageContext.request.contextPath}/addfriend" method="post">
-        <h1><%=temp%>
-        </h1>
+        <h1><%=temp%></h1>
         <input name="userid" type="hidden" value="<%=user.getId()%>">
         <button class="button2" type="submit">Add friend</button>
     </form>
