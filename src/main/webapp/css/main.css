@@ -97,13 +97,25 @@ header .left {
 	font-family:verdana;
 }
 
+.friend-button{
+	color: #fff;
+	background-color: #1db954;
+	padding: 10px;
+	border-radius: 20px;
+	font-size: 15px;
+	margin: 10px 0;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
 .col{
 	margin-top: 90px;
 	margin-left: 25%;
 	width:50%;
 	height: 900px;
 	position:absolute;
-	background:#535353;
+	background: #212121;;
 	top:0;
 	left:0;
 	color:#1ED761;
@@ -117,7 +129,7 @@ header .left {
 	padding: 0px;
 	-ms-flex: 1;
 	flex: 1;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .compose input {
@@ -227,4 +239,29 @@ header .left {
 
 .message-received:only-child {
 	border-radius: 0.5em
+}
+
+.add-friends{
+	color: #fff;
+	background-color: #1db954;
+	padding: 10px;
+	border-radius: 20px;
+	font-size: 15px;
+	margin: 10px 0;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.log-out{
+	color: #fff;
+	background-color: #1db954;
+	padding: 10px;
+	border-radius: 20px;
+	font-size: 15px;
+	margin: 10px 0;
+	border: none;
+	outline: none;
+	cursor: pointer;
 }
