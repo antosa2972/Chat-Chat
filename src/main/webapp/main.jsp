@@ -21,6 +21,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Description" content=""/>
 
+    <style>
+        <%@include file="/css/main.css"%>
+    </style>
+
     <title>Chat&Chat</title>
 </head>
 <body>
@@ -55,14 +59,12 @@
             <div class="left"><h2>Chat&Chat</h2></div>
 
             <div class="middle">
-                <h3><%=friendName%>
-                </h3>
-                <p>Chat&Chat</p>
+                <h3><%=friendName%></h3>
             </div>
 
             <div class="right">
                 <div class="username">
-                    <%=userFullName%>
+                    <h3><%=userFullName%></h3>
                 </div>
             </div>
         </div>
