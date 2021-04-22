@@ -88,7 +88,7 @@
                     <li>
                         <form action="${pageContext.request.contextPath}/fetch" method="post">
                             <input type="hidden" name="friend-uname" value="<%=friendUname%>">
-                            <button type="submit"><h3><%=temp%>
+                            <button class="friend-button" type="submit"><h3><%=temp%>
                             </h3></button>
                         </form>
                     </li>
@@ -113,8 +113,7 @@
                         %>
                         <div class="col-message-sent">
                             <div class="message-sent">
-                                <p><%=newMessage%>
-                                </p>
+                                <p><%=newMessage%></p>
                             </div>
                         </div>
                         <%
@@ -122,8 +121,7 @@
                         %>
                         <div class="col-message-received">
                             <div class="message-received">
-                                <p><%=newMessage%>
-                                </p>
+                                <p><%=newMessage%></p>
                             </div>
                         </div>
                         <%
@@ -158,8 +156,8 @@
                     <p><%=friendEmail%>
                     </p>
                     <form action="${pageContext.request.contextPath}/logout" method="post">
-                        <button type="submit">Log Out</button>
-                        <button><a href="listUsers.jsp">Add Friends</a></button>
+                        <button class="log-out" type="submit">Log Out</button>
+                        <button class="add-friends"><a href="listUsers.jsp">Add Friends</a></button>
                     </form>
                 </div>
 
