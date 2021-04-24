@@ -57,5 +57,12 @@
 		<servlet-name>AddFriendServlet</servlet-name>
 		<url-pattern>/addfriend</url-pattern>
 	</servlet-mapping>
-
+	<servlet>
+		<servlet-name>webS</servlet-name>
+		<servlet-class>www.project.controller.WebS</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>webS</servlet-name>
+		<url-pattern>/webS</url-pattern>
+	</servlet-mapping>
 </web-app>

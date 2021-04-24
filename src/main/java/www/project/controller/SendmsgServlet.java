@@ -17,7 +17,6 @@ public class SendmsgServlet extends HttpServlet {
 
 		String newMessage = request.getParameter("input-box").toLowerCase();
 		System.out.println(newMessage);
-
 		HttpSession httpSession = request.getSession(true);
 
 		UserDAO userDAO = new UserDAO();
@@ -30,7 +29,7 @@ public class SendmsgServlet extends HttpServlet {
 
 		MessagesDAO messagesDAO = new MessagesDAO();
 		messagesDAO.newMessage(sender.getId(), receiver.getId(), newMessage);
-
-		getServletContext().getRequestDispatcher("/main.jsp").forward(request, response);
+		//getServletContext().getRequestDispatcher("/main.jsp").forward(request, response);
+		response.sendRedirect("/main.jsp");
 	}
 }

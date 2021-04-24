@@ -6,7 +6,7 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/chatandchat?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/chatandchat?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
 		<property name="hibernate.connection.username">antosa2972</property>
 		<property name="hibernate.connection.password">55ssteam29</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
